@@ -1,0 +1,23 @@
+package com.devign.welcomeactivity.Controller
+
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import com.devign.welcomeactivity.R
+import com.devign.welcomeactivity.Utilities.EXTRA_LEAGUE
+import com.devign.welcomeactivity.Utilities.EXTRA_SKILL
+import kotlinx.android.synthetic.main.activity_finish.*
+
+class FinishActivity : AppCompatActivity() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_finish)
+
+        // Pulling passed constants from previous activities/buttons
+        val league = intent.getStringExtra(EXTRA_LEAGUE)
+        val skill = intent.getStringExtra(EXTRA_SKILL)
+
+        // Html input into searchLeaguesText
+        searchLeaguesText.text = "Looking for $league $skill league near you..."
+    }
+}

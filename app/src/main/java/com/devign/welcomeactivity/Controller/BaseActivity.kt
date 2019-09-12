@@ -1,4 +1,4 @@
-package com.devign.welcomeactivity
+package com.devign.welcomeactivity.Controller
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
