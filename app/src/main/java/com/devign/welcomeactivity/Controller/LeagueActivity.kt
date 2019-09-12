@@ -2,6 +2,7 @@ package com.devign.welcomeactivity.Controller
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.PersistableBundle
 import android.view.View
 import android.widget.Toast
 import com.devign.welcomeactivity.Model.Player
@@ -13,9 +14,22 @@ class LeagueActivity : BaseActivity() {
 
     var player = Player("","")
 
+    // Saves parcelables and constants so that it retains its data when InstanceStates change (rotating screen)
+    override fun onSaveInstanceState(outState: Bundle, outPersistentState: PersistableBundle) {
+        super.onSaveInstanceState(outState, outPersistentState)
+        outState.putParcelable(EXTRA_PLAYER, player)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_league)
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+        if (savedInstanceState != null) {
+            player = savedInstanceState.getParcelable<Player>(EXTRA_PLAYER)!!
+        }
     }
 
     // Singles out each button so that only one button highlights
