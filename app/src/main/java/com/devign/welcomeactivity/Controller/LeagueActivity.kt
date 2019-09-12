@@ -4,13 +4,14 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
-import com.devign.welcomeactivity.Utilities.EXTRA_LEAGUE
+import com.devign.welcomeactivity.Model.Player
 import com.devign.welcomeactivity.R
+import com.devign.welcomeactivity.Utilities.EXTRA_PLAYER
 import kotlinx.android.synthetic.main.activity_league.*
 
 class LeagueActivity : BaseActivity() {
 
-    var selectedLeague = ""
+    var player = Player("","")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,32 +23,32 @@ class LeagueActivity : BaseActivity() {
         LeagueWomensBtn.isChecked = false
         LeagueCoedBtn.isChecked = false
 
-        selectedLeague = "mens"
+        player.league = "mens"
     }
 
     fun onWomensClicked(view: View) {
         LeagueMensBtn.isChecked = false
         LeagueCoedBtn.isChecked = false
 
-        selectedLeague = "womens"
+        player.league = "womens"
     }
 
     fun onCoedClicked(view: View) {
         LeagueMensBtn.isChecked = false
         LeagueWomensBtn.isChecked = false
 
-        selectedLeague = "coed"
+        player.league = "coed"
     }
     // End
 
     // Next click directs user to SkillActivity
     fun leagueNextClicked(view: View) {
         // if a league has been selected..
-        if (selectedLeague != "") {
+        if (player.league != "") {
             // Enable user to click the NEXT button
             val skillActivity = Intent(this, SkillActivity::class.java)
             // pass a variable into the SkillActivity
-            skillActivity.putExtra(EXTRA_LEAGUE, selectedLeague)
+            skillActivity.putExtra(EXTRA_PLAYER, player)
             startActivity(skillActivity)
             // if a league hasn't been selected..
         } else {
